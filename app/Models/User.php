@@ -18,8 +18,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    public function test(){
-        return $this->belongTo(Test::class);
+    public function tests(){
+        return $this->belongsToMany(Test::class);
     }
     
     protected $fillable = [

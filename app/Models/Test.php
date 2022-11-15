@@ -10,14 +10,14 @@ class Test extends Model
 {
     use HasFactory;
     
-    protected $with = ['question', 'user'];
+    protected $with = ['user', 'questions'];
 
 
     public function questions(){
-        return $this->belognsToMany(Question::class);
+        return $this->hasMany(Question::class);
     }
     
     public function user(){
-        return $this->belongTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

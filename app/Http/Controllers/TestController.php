@@ -18,8 +18,8 @@ class TestController extends Controller
         return view('test.create');
     }
      
-    public function show(Request $request, $test_id){
-        $test = Test::find($test_id);
+    public function show(Request $request, $test_id){        
+        $test = Test::find($test_id);                       
         
         return view('test.show', [
             'test' => $test,

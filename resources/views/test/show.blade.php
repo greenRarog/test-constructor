@@ -14,12 +14,22 @@
     @foreach($test->questions as $question)
     <div class="question">
         <span class="question__item">ВОПРОС: {{ $question->question }}</span><br>
-        @if(isset($question->pic)
+        @if(isset($question->pic))
         {{ $question->pic }}<br>
         @endif        
     </div>    
         <hr>
+        
         @if($question->type == 'oneAnswer')
+        One Answer<br>
+        @elseif($question->type == 'manyAnswers')
+        many Answers<br>
+        @else
+        input Answer
+        @endif
+        
+        @endforeach
+        
         
         
     

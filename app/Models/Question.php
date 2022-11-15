@@ -10,14 +10,14 @@ class Question extends Model
 {
     use HasFactory;
     
-    protected $with = ['answer'];
+    protected $with = ['answers'];
 
 
     public function answers(){
-        return $this->belongToMany(Answer::class);
+        return $this->hasMany(Answer::class);
     }
     
     public function test(){
-        return $this->belongTo(Test::class);
+        return $this->belongsTo(Test::class);
     }
 }
