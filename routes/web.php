@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::match(['get', 'post'], '/create-new-test', [TestController::class, 'creat
 Route::match(['get', 'post'], '/create-new-test/{test_id}', [QuestionController::class, 'create']);
 Route::match(['get', 'post'], '/create-new-test/{test_id}/{question_id}/{countAnswer}', [AnswerController::class, 'create']);
 Route::match(['get', 'post'], '/show/{test_id}', [TestController::class, 'show']);
+Route::match(['get', 'post'], '/user/{user_id}', [UserController::class, 'profile']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
