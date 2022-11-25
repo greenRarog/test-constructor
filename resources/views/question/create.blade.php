@@ -1,12 +1,12 @@
 <x-app-layout>
-    <form action="" method="POST">
+    <form action="" enctype="multipart/form-data" method="POST">
         @csrf
         <h1>Создание нового теста</h1>
         <br>
         <p>Отлично! пора добавить в наш тест вопрос</p>
         Текст вопроса:<br>
         <input name="question"><br>
-        нужна ли картинка???<br><br>
+        Добавить картинку:  <input type="hidden" name="MAX_FILE_SIZE" value="1000000" /><input type='file' name='pic'><br>
         <p>Теперь определимся с типом вопроса. Предлагается три типа вопросов:<p>
         <select name="type">
             <option value="inputAnswer">вопрос с ПОЛЕМ для ответа, куда тестируемый напишет ответ</option>

@@ -7,18 +7,25 @@
                 {{ $test->user->name }}
             </a>
         </span><br>
+        
+        @if($user->id == $test->user->id)
+        <a href="/change/{{ $test->id }}">изменить</a><br>
+        <a href="/delete/{{ $test->id }}">удалить</a><br>
+        @endif
+        
         <span class="header__item">Тест называется: {{ $test->name }}</span><br>
         <span class="header__item">Описание теста: {{ $test->text }}</span><br>
     </div>
         <br><br><br>
-        <form action='' method="POST">    
+        <form action='' method="POST">
         @csrf   
     @foreach($test->questions as $question)
     <div class="question">
         <span class="question__item">ВОПРОС: {{ $question->question }}</span><br>
-        @if(isset($question->pic))
-        {{ $question->pic }}<br>
-        @endif        
+        @if($question->pic != '')
+        <img src="{{ Storage::url('image/'.$question->pic) }}" alt="question_image">
+        <br>
+        @endif    
     </div>    
                 
         @if($question->type == 'oneAnswer')
@@ -36,7 +43,7 @@
                 
         @endif                
         <hr><br>
-        @endforeach
+     @endforeach
         <input hidden name='check' value="push">
         <input hidden name='test_id' value="{{ $test->id }}">        
         <input type="submit" value="отправить тест!">

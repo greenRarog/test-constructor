@@ -18,6 +18,6 @@
         @endif
     </div>    
     <br>
-    <a href="#">страница тестов</a>
+    <a href="/show/all">страница тестов</a>
     
 </x-app-layout>
