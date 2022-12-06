@@ -1,43 +1,97 @@
 <x-app-layout>
-    <form action="" method="POST">
+    <form action="" method="POST" class="coolFormTest">
         @csrf
-        <h1>Изменение теста {{ $test->name }}</h1>
-        Название: <input name="name" value="{{ $test->name }}"><br>
-        Описание теста: <textarea name="text">{{ $test->text }}</textarea><br>
-        <input hidden name='test_id' value='{{ $test->id }}'>
-        
-          @if($test->private == 0)
-            Сделать приватным <input name="private" type="checkbox" value="1"><br>
-          @else
-            Сделать публичным <input name="private" type="checkbox" value="0"><br>
-          @endif
-
-        Количество баллов для "удовлетворительно" <input name="low_mark" value="{{ $test->low_mark }}"><br>
-        Количество баллов для "хорошо" <input name="midle_mark" value="{{ $test->midle_mark }}"><br>
-        Количество баллов для "отлично"(или для ЗАЧЕТ) <input name="high_mark" value="{{ $test->high_mark }}"><br>
-<hr>
-        Вопросы:<br>
-          @foreach($test->questions as $question)
-          Вопрос: <input name="question:{{ $question->id }}" value="{{ $question->question }}"><br>
-          <a href='/question-delete/{{ $question->id }}'>удалить вопрос!</a><br>
-            @if($question->pic != '')
-              <img src="{{ Storage::url('image/'.$question->pic) }}" alt="question_image">
-              <a href='/change-pic/{{ $question->id }}'>изменить картинку</a>
-              <br>
-            @endif
+        <div class="coolForm">
+        <div class="coolWindow">
+            <div class="coolTitle">
+            Изменение теста "{{ $test->name }}"
+            </div>
+            <div class="coolSubtitle">
+                Название: 
+            </div>
+            <input name="name" value="{{ $test->name }}" class="coolInput">
+            <duv class="coolSubtitle">
+                Описание теста: 
+            </duv>                
+            <textarea name="text" class="coolInput font-family">
+                {{ $test->text }}
+            </textarea><br>
             
+            <input hidden name='test_id' value='{{ $test->id }}'>
+        
+            @if($test->private == 0)
+            <div class="coolSubtitle">
+                Сделать приватным 
+            </div>        
+            <input name="private" type="checkbox" value="1">
+            
+            @else
+            <div class="coolSubtitle">
+                Сделать публичным 
+            </div>    
+            <input name="private" type="checkbox" value="0">
+            @endif
+
+            <div class="coolSubtitle">
+                Количество баллов для "удовлетворительно" 
+            </div>
+            <input name="low_mark" value="{{ $test->low_mark }}" class="coolInput">
+            
+            <div class="coolSubtitle">
+                Количество баллов для "хорошо" 
+            </div>
+            <input name="midle_mark" value="{{ $test->midle_mark }}" class="coolInput">
+            
+            <div class="coolSubtitle">
+                Количество баллов для "отлично"(или для ЗАЧЕТ) 
+            </div>
+            <input name="high_mark" value="{{ $test->high_mark }}" class="coolInput">
+        </div>        
+        </div>    
+          @foreach($test->questions as $question)
+          <div class="coolForm">
+          <div class="coolWindow">
+            <div class="coolSubtitle">
+                Вопрос: 
+            </div>    
+            <input name="question:{{ $question->id }}" value="{{ $question->question }}" class="coolInput">              
+            <a href='/question-delete/{{ $question->id }}'>удалить вопрос!</a>
+              
+            @if($question->pic != '')
+            <div>
+              <img src="{{ Storage::url('image/'.$question->pic) }}" alt="question_image" class="coolImg">
+              <a href='/change-pic/{{ $question->id }}'>изменить картинку</a>
+            </div>  
+            @endif
+
             @foreach($question->answers as $answer)
-              <br>Ответ: <input name='answer-content:{{ $answer->id }}' value='{{ $answer->content }}'><br>
-              Оценка ответа: <input name='answer-value:{{ $answer->id }}' value='{{ $answer->value}}'><br>                            
+              <div class="coolSubtitle">
+                Ответ: 
+              </div>
+              <input name='answer-content:{{ $answer->id }}' value='{{ $answer->content }}' class="coolInput">
+              
+              <div class="coolSubtitle">
+                Оценка ответа: 
+              </div>
+              <input name='answer-value:{{ $answer->id }}' value='{{ $answer->value}}' class="coolInput">
               <input hidden name='answer-id' value='{{ $answer->id }}'>
-              <a href='/answer-delete/{{ $answer->id }}'>удалить ответ</a><br>
+              <a href='/answer-delete/{{ $answer->id }}'>удалить ответ</a>
+
             @endforeach
-            <hr><br><br>
+            </div>
+            </div>            
           @endforeach
         
         
-
-        <input type="submit" value="изменить">
+        <div class='coolForm'><div class='coolWindow'>  
+        <div class='coolSubmit'>
+            <a href='/create-new-test/{{ $test->id }}'>добавить вопрос</a>
+        </div>                
+        <input type="submit" value="изменить" class="coolSubmit">
+        <div class='coolSubmit'>
+            <a href='/show/all'>выйти не меняя ничего</a>
+        </div>
+        </div></div>
     </form>
-    <a href='/show/all'>выйти не меняя ничего</a>
+    
 </x-app-layout>

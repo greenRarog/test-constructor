@@ -29,9 +29,9 @@ class TestController extends Controller
                 if (substr($key, 0, 11) == 'questionBox') {
                     $valueTest += $value;
                 } else if (substr($key, 0, 13) == 'questionInput') {
-                    $lenId = strlen($key) - 8;
-                    $question_id = substr($key, 8, $lenId);
-                    $answers = Answer::where('question_id', $question_id)->get();
+                    $lenId = strlen($key) - 13;
+                    $question_id = substr($key, 13, $lenId);
+                    $answers = Answer::where('question_id', $question_id)->get();                    
                     foreach ($answers as $answer) {
                         if ($answer->content == $value) {
                             $valueTest += (int)$answer->value;
@@ -66,7 +66,7 @@ class TestController extends Controller
         if ($authorized) {
             $tests = Test::all();
         } else {
-            $tests = Test::where('private', '0');
+            $tests = Test::where('private', '0')->get();
         }        
         return view('test.showAll', [
            'tests' => $tests, 
@@ -85,7 +85,6 @@ class TestController extends Controller
                 $private = (int)$request->private;
             }
             $this->saveTest($request->name, $request->text, $user_id, $private, $request->low_mark, $request->midle_mark, $request->high_mark, $test_id);            
-            dd($test);
             return redirect('/show/all');
         } 
         if (Auth::check()){

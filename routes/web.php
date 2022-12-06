@@ -5,7 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +33,13 @@ Route::match(['get', 'post'], '/show/all', [TestController::class, 'showAll']);
 Route::match(['get', 'post'], '/show/{test_id}', [TestController::class, 'show']);
 Route::match(['get', 'post'], '/delete/{test_id}', [TestController::class, 'delete']);
 Route::match(['get', 'post'], '/change/{test_id}', [TestController::class, 'change']);
-Route::match(['get', 'post'], '/user/{user_id}', [UserController::class, 'profile']);
+Route::match(['get', 'post'], '/profile/{user_id}', [UserController::class, 'profile']);
+Route::match(['get', 'post'], '/out', [AuthenticatedSessionController::class, 'destroy']);
+Route::match(['get', 'post'], '/myProfile', [UserController::class, 'myProfile']);
+Route::get('/rezume', function (){
+    return view('rezume');    
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

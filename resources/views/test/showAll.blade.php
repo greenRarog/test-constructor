@@ -1,12 +1,13 @@
 <x-app-layout>
     <h1>Список доступных тестов:</h1>
     @if(!$authorized)
-    больше тестов доступно после <a href="localhost/register">регистрации</a><br>
-    <a href="localhost/login">войдите</a>, если уже зарегистрированы
+    <div class='card'>
+    больше тестов доступно после <a href="localhost/register" class='card_link'>регистрации</a><br>
+    <a href="localhost/login" class='card_link'>войдите</a>, если уже зарегистрированы
+    </div>
     @endif
-    <a href="/create-new-test">Создай свой тест</a><br>
-    <br>
-    <table>
+    
+    <table class='card'>
         <tr>
             <th>Название теста</th>
             <th>Описание теста</th>
@@ -14,9 +15,9 @@
         </tr>    
     @foreach($tests as $test)
       <tr>
-          <td><a href='/show/{{ $test->id }}'>{{ $test->name }}</a></td>
-          <td>{{ $test->text }}</td>
-          <td><a href='/profile/{{ $test->user->id }}'>{{ $test->user->name }}</a></td>
+          <td class='card_item'><a href='/show/{{ $test->id }}' class='card_link'>{{ $test->name }}</a></td>
+          <td class='card_item'>{{ $test->text }}</td>
+          <td class='card_item'><a href='/profile/{{ $test->user->id }}' class='card_link'>{{ $test->user->name }}</a></td>
       </tr>
     @endforeach
     </table>

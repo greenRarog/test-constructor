@@ -6,7 +6,7 @@ use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class QuestionController extends Controller
 {
@@ -14,8 +14,7 @@ class QuestionController extends Controller
         $user = Auth::User();
         if ($request->has('question') and $request->question != '') {
             if ($request->has('pic') and $request->pic != '') {
-                $picName = $request->pic->getClientOriginalName();
-                $request->pic->move(Storage::path('public/image/'));
+                $picName = $this->savePic($request->pic);
                 $question = $this->saveQuestion($request->question, $request->type, $request->test_id, $picName);
             } else {
                 $question = $this->saveQuestion($request->question, $request->type, $request->test_id);
@@ -28,8 +27,10 @@ class QuestionController extends Controller
     }
     
     public function changePic(Request $request, $question_id){        
-        if ($request->has('pic')) {
+        if ($request->has('pic')) {            
             $question = Question::find($request->question_id);
+            Storage::delete('public/image/' . $question->pic);
+            Storage::delete('file.jpg');
             $question->pic = $this->savePic($request->pic);
             $question->save();
             return redirect('/change/' . $question->test->id);
@@ -63,9 +64,9 @@ class QuestionController extends Controller
     }
     
     private function savePic($pic) {
-        $picName = $pic->getClientOriginalName();
-        $pic->move(Storage::path('public/image/'));
-        return $pic;
+        $picName = Str::random(40) . $pic->getClientOriginalName();
+        $pic->move(Storage::path('public/image/'), $picName);
+        return $picName;
     }
     
     private function saveQuestion($question, $type, $test_id, $pic = null) {

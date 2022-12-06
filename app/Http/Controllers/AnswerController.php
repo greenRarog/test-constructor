@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class AnswerController extends Controller
 {
     public function create(Request $request, $test_id, $question_id, $countAnswer){        
+        $countAnswer = (int)$countAnswer;
         if ($request->has('countAnser')) {
             $count = $request->countAnswer;
             $aliasValue = 'value#';
@@ -16,19 +17,17 @@ class AnswerController extends Controller
             for ($i = 1; $i <= $count; $i++) {            
                 $aliasValue .= $i;
                 $aliasContent .= $i;
-                $this->saveAnswer($aliasContent, $aliasValue, $request->question_id);
+                $this->saveAnswer($request->$aliasContent, $request->$aliasValue, $request->question_id);
                 $aliasValue = 'value#';
                 $aliasContent = 'content#';
             }                    
-            if ($request->endtest === '1'){
-                return redirect('/show/' . $request->test_id);
-            }
             return redirect('/create-new-test/' . $request->test_id);
                         
         }        
+        $question = Question::find($question_id);
         return view('answer.create', [
             'countAnswer' => $countAnswer,
-            'question_id' => $question_id,
+            'question' => $question,
             'test_id' => $test_id,
         ]);
     }

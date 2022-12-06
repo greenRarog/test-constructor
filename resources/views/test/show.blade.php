@@ -1,53 +1,81 @@
 <x-app-layout>
-    <div class="message">Просмотр теста!<div>
+    <div class="coolForm">
+    <div class="coolWindow">
+        
+        <div class="coolTitle">
+            Просмотр теста
+        </div>
 
-    <div class="header">        
-        <span class="header__item">Создатель теста:
-            <a href="/user/{{ $test->user->id }}"> 
+        <div class="coolSubtitle">        
+            @if($user->id == $test->user->id)
+                Этот тест создан Вами
+                <a href="/change/{{ $test->id }}">изменить</a>
+                <a href="/delete/{{ $test->id }}">удалить</a>
+            @else
+                Создатель теста:
+                <a href="/user/{{ $test->user->id }}"> 
                 {{ $test->user->name }}
-            </a>
-        </span><br>
-        
-        @if($user->id == $test->user->id)
-        <a href="/change/{{ $test->id }}">изменить</a><br>
-        <a href="/delete/{{ $test->id }}">удалить</a><br>
-        @endif
-        
-        <span class="header__item">Тест называется: {{ $test->name }}</span><br>
-        <span class="header__item">Описание теста: {{ $test->text }}</span><br>
+                </a>              
+            @endif
+        </div>
+        <div class="coolSubtitle">
+            Тест называется: {{ $test->name }}
+        </div>
+        <div class="coolSubtitle">
+            Описание теста: {{ $test->text }}
+        </div>    
     </div>
-        <br><br><br>
-        <form action='' method="POST">
-        @csrf   
+    </div>
+    <form action='' method="POST">
+    @csrf   
     @foreach($test->questions as $question)
-    <div class="question">
-        <span class="question__item">ВОПРОС: {{ $question->question }}</span><br>
+    <div class='coolForm'>
+    <div class="coolWindow">
+        <div class="coolTitle">
+        ВОПРОС: {{ $question->question }}
+        </div>
         @if($question->pic != '')
-        <img src="{{ Storage::url('image/'.$question->pic) }}" alt="question_image">
-        <br>
+        <img src="{{ Storage::url('image/'.$question->pic) }}" alt="question_image" class='coolImg'>
         @endif    
-    </div>    
                 
         @if($question->type == 'oneAnswer')
           @foreach($question->answers as $answer)
-          {{ $answer->content }}<input name="questionBox{{ $question->id }}" type="radio" value="{{ $answer->value }}"><br>
+          <div class="input-container ic2">              
+            <div class="coolSubtitle">
+              {{ $answer->content }}
+            </div>              
+              <input name="questionBox{{ $question->id }}" type="radio" value="{{ $answer->value }}" class="">
+          </div>
+          
           @endforeach          
         
-        @elseif($question->type == 'manyAnswers')
+        @elseif($question->type == 'manyAnswers')        
           @foreach($question->answers as $answer)
-          {{ $answer->content }}<input name="questionBox{{ $question->id }}-{{ $answer->id }}" type="checkbox" value="{{ $answer->value }}"><br>
+          <div class='input-container ic2'>
+            <div class='coolSubtitle'>
+                {{ $answer->content }}
+            </div>              
+            <input name="questionBox{{ $question->id }}-{{ $answer->id }}" type="checkbox" value="{{ $answer->value }}">
+          </div>
           @endforeach                    
                 
         @else
-          Введите ответ:<input name="questionInput{{ $question->id }}"><br>
-                
+          
+          <div class='coolSubtitle'>
+             Введите ответ:
+          </div>              
+          <div class='input-container c2'>
+              <input name="questionInput{{ $question->id }}" class='coolInput' placeholder=' '>
+          </div>
         @endif                
-        <hr><br>
+    </div>    
+    </div>    
      @endforeach
-        <input hidden name='check' value="push">
-        <input hidden name='test_id' value="{{ $test->id }}">        
-        <input type="submit" value="отправить тест!">
-        </form>
+     
+    <input hidden name='check' value="push">
+    <input hidden name='test_id' value="{{ $test->id }}">        
+    <input type="submit" value="отправить тест!" class='coolSubmit width'>
+    </form>
         
         
     

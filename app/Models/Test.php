@@ -11,8 +11,8 @@ class Test extends Model
     use HasFactory;
     
     protected $with = ['user', 'questions'];
-
-
+    
+    
     public function questions(){
         return $this->hasMany(Question::class);
     }

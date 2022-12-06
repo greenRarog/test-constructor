@@ -1,90 +1,37 @@
-        <form method="POST" action="{{ route('register') }}">
-            @csrf                            
-            <div>
-                name:<br>
-                <input name="name" id="name" type="text"><br>
-            </div>
-            
-            <div>
-                email:<br>
-                <input id="email" type="email" name="email"><br>                
-            </div>    
-            
-            <div>
-                password:<br>
-                <input id="password" type="password" name="password"><br>
-            </div>    
-
-            <div>
-                confirm passrod:<br>
-                <input id="password_confirmation" type="password" name="password_confirmation"><br>
-            </div>    
-            
-            <div>                
-                <button type="submit">registration</button><br>
-            </div>    
-        </form>            
 <x-guest-layout>
-    <x-auth-card>                    
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div>
-                <x-input-label for="name" :value="__('Name')" />
-
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-input-label for="email" :value="__('Email')" />
-
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
+    <form method="POST" action="{{ route('register') }}" class="coolForm">
+            @csrf                            
+            <div class="coolWindow">
+                
+              <div class="coolSubtitle">Введите данные:</div>
+                <div class="input-container ic1">
+                    <input name="name" class="coolInput" type="text" placeholder=" ">
+                    <div class="cut"></div>
+                    <label for='name' class="placeholder">имя</label>
+                </div>
             
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
+                <div class='input-container ic2'>                    
+                    <input type="email" name="email" class='coolInput' placeholder=" ">
+                    <div class='cut'></div>
+                    <label for='email' class='placeholder'>email</label>
+                </div>    
+            
+                <div class='input-container ic2'>
+                    <input type="password" name="password" class='coolInput' placeholder=" ">
+                    <div class='cut'></div>
+                    <label for='password' class='placeholder'>пароль</label>
+                </div>    
 
-                <x-primary-button class="ml-4">
-                    {{ __('Register') }}
-                </x-primary-button>
+                <div class='input-container ic2'>
+                    <input type="password" name="password_confirmation" class='coolInput' placeholder=" ">
+                    <div class='cut'></div>
+                    <label for='password_confirmation' class='placeholder'>подтверждение</label>
+                </div>    
+            
+                <div>                
+                    <button type="submit" class='coolSubmit'>регистрация</button>
+                </div>    
+              
             </div>
-        </form>
-    </x-auth-card>
+        </form>            
 </x-guest-layout>

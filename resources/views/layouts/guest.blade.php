@@ -14,8 +14,18 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
-        </div>
+            <x-header.headerGuest />        
+            <div class='midle'>
+                <div class='column'>
+                    <x-midle.menu />
+                </div>    
+                <div class="main">
+                    {{ $slot }}
+                </div>
+                <div class='column'>
+                    <x-midle.banner />
+                </div>
+            </div>
+            <x-footer.footer />                
     </body>
 </html>
