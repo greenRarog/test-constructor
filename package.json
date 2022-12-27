@@ -1,5 +1,6 @@
 {
-    "private": true,
+    "private": true,       
+    
     "scripts": {
         "dev": "vite",
         "build": "vite build"
@@ -18,5 +19,5 @@
     },
     "dependencies": {
         "laravel-mix": "^6.0.49"
-    }
+    }     
 }

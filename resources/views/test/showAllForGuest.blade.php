@@ -1,9 +1,9 @@
-<x-app-layout>
+<x-guest-layout>
     <h1>Список доступных тестов:</h1>
     @if(!$authorized)
     <div class='card'>
-    больше тестов доступно после <a href="localhost/register" class='card_link'>регистрации</a><br>
-    <a href="localhost/login" class='card_link'>войдите</a>, если уже зарегистрированы
+    больше тестов доступно после <a href="/register" class='card_link'>регистрации</a><br>
+    <a href="/login" class='card_link'>войдите</a>, если уже зарегистрированы
     </div>
     @endif
     
@@ -21,4 +21,4 @@
       </tr>
     @endforeach
     </table>
-</x-app-layout>
+</x-guest-layout>

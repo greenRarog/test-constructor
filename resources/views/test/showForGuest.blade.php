@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="coolForm">
     <div class="coolWindow">
         
@@ -6,21 +6,11 @@
             Просмотр теста
         </div>
 
-        <div class="coolSubtitle">        
-            @if(isset($user))
-            
-            @if($user->id == $test->user->id)
-                Этот тест создан Вами
-                <a href="/change/{{ $test->id }}">изменить</a>
-                <a href="/delete/{{ $test->id }}">удалить</a>
-            @else
-                Создатель теста:
-                <a href="/user/{{ $test->user->id }}"> 
-                {{ $test->user->name }}
-                </a>              
-            @endif
-            
-            @endif
+        <div class="coolSubtitle">                   
+            Создатель теста:
+            <a href="/user/{{ $test->user->id }}"> 
+            {{ $test->user->name }}
+            </a>              
         </div>
         <div class="coolSubtitle">
             Тест называется: {{ $test->name }}
@@ -83,4 +73,4 @@
         
         
     
-</x-app-layout>
+</x-guest-layout>

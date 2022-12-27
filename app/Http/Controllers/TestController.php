@@ -48,14 +48,18 @@ class TestController extends Controller
         }        
         if (Auth::check()) {
             $user = Auth::User();
+            return view('test.show', [
+                'test' => $test,
+                'user' => $user,
+            ]);            
+            
         } else {
-            $user = '';
+            return view('test.showForGuest', [
+                'test' => $test,                
+            ]);            
         }
-        $user = Auth::User();
-        return view('test.show', [
-            'test' => $test,
-            'user' => $user,
-        ]);
+        //$user = Auth::User();
+
     }
     
     public function showAll() {        
@@ -68,10 +72,17 @@ class TestController extends Controller
         } else {
             $tests = Test::where('private', '0')->get();
         }        
+        if($authorized) {
         return view('test.showAll', [
            'tests' => $tests, 
            'authorized' => $authorized,
         ]);
+        } else {
+        return view('test.showAllForGuest', [
+           'tests' => $tests, 
+           'authorized' => $authorized,
+        ]);            
+        }
     }
     
     public function change(Request $request, $test_id) {

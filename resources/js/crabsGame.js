@@ -1,22 +1,4 @@
-<div class="game">
-        <div class="gamer"></div>
-        <div class="gamer_move"></div>
-        <div class="computer"></div>
-        <div class="computer_move"></div>
-        <div class="game_text">знаете игру в кости?</div>
-        <input class="game_button" type="submit" value="узнать">
-    
-    
-    <div hidden> 
-        <div class="one_point"><div class = "cube">------------------<pre>|       |</pre><pre>|   <span class='dot'>.</span>   |</pre><pre>|       |</pre>-------------------</div><br></div>
-        <div class="two_point"><div class = "cube">------------------<pre>|   <span class="dot">.</span>   |</pre><pre>|       |</pre><pre>|   <span class="dot">.</span>   |</pre>-------------------</div><br></div>
-        <div class="three_point"><div class = "cube">------------------<pre>| <span class="dot">.</span>     |</pre><pre>|   <span class="dot">.</span>   |</pre><pre>|     <span class="dot">.</span> |</pre>-------------------</div><br></div>
-        <div class="four_point"><div class = "cube">------------------<pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre><pre>|       |</pre><pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre>-------------------</div><br></div>
-        <div class="five_point"><div class = "cube">------------------<pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre><pre>|   <span class="dot">.</span>   |</pre><pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre>-------------------</div><br></div>
-        <div class="six_point"><div class = "cube">------------------<pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre><pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre><pre>| <span class="dot">.</span>   <span class="dot">.</span> |</pre>-------------------</div><br></div>
-    </div>
-    <script>
-    let cube = [];
+let cube = [];
     cube[1] = document.querySelector('.one_point');
     cube[2] = document.querySelector('.two_point');
     cube[3] = document.querySelector('.three_point');
@@ -36,9 +18,6 @@ button.addEventListener('click', getStart);
                                 
 function getStart() {        
     gamer.textContent = ''; 
-    computer.textContent = ''; 
-    gamer_move.textContent = ''; 
-    computer_move.textContent = ''; 
     message.textContent = 'правила просты: сперва кидаете кости на право превого хода';
     button.value = 'бросить кости';
     button.removeEventListener('click', getStart);
@@ -89,7 +68,7 @@ function mainGameRule() {
     gamer.textContent = '';
     computer_move.textContent = '';
     gamer_move.textContent = '';
-    message.innerHTML = 'правила основной игры: <br>играющий кидает кости <br>если выпадает 7 или 11 - выйгрывает <br>если выпадает 2 или 3 или 12 - проигрывает <br>попробуйте!';
+    message.innerHTML = 'правила основной игры: игрок кидает кости. если выпадает 7 или 11 то игрок сразу выйгрывает. если выпадает 2 или 3 или 12 - сразу проигрывает. попробуйте!';
     button.value = 'играть';
     button.removeEventListener('click', mainGameRule);        
     button.addEventListener('click', mainGame);    
@@ -115,7 +94,7 @@ function mainGame() {
         button.addEventListener('click', getStart);        
     } else {
         point = players[actualPlayer][2];
-        message.innerHTML = message.innerHTML + 'point! это значит что теперь игрок кидает кости пока не выпадет 7(и он проиграет) или point=' + point + '(и он победит)';
+        message.innerHTML = message.innerHTML + '<br>point! это значит что теперь игрок будет перебрасывать кости пока не выпадет 7(и он проиграет) или point(и он победит)';
         button.value = 'продолжаем';
         button.removeEventListener('click', mainGame);
         button.addEventListener('click', pointGame);        
@@ -132,7 +111,7 @@ function pointGame() {
         button.value = 'еще разок?';
         button.addEventListener('click', getStart);                
     } else if (players[actualPlayer][2] == '7') {        
-        message.textContent = actualPlayer + ' проиграл!';
+        message.textContent = 'Сожалеем, но ' + actualPlayer +'проиграл!';
         button.removeEventListener('click', pointGame);
         button.value = 'еще разок?';
         button.addEventListener('click', getStart);                        
@@ -158,5 +137,3 @@ function printMove(inner,array) {
 function roll() {
     return Math.floor(Math.random() * 6) + 1;
 }
-    </script>
-</div>    

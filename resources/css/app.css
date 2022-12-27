@@ -1,3 +1,348 @@
-a {
-    color: red;
+body {
+    margin: 0;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #b4d6db;
 }
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* header begin*/
+.header {
+    width: 100%;
+    margin: 0 auto;
+    height: 300px;
+    background: #4d99a5;    
+}
+.head {
+    display: flex;   
+    justify-content: space-between;
+}
+.logo {
+    margin-top: 20px;
+    margin-left: 40px;
+    overflow: hidden;
+    -webkit-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+    height: 165px;      
+    width: 180px;
+}
+.logo:hover {
+  border-radius: 60%;
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.logo_image {
+    border-radius: 25px;
+    height: 165px;      
+    width: 180px;
+}
+
+.nav {
+    margin-top: 50px;
+    margin-right: 25px;
+}
+
+.nav_item {
+    padding:25px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+}
+.nav_item:hover {
+    color:orange;
+}
+
+.neck {
+    display: flex;
+    justify-content: center;
+}
+
+.mainTreme {
+    font-size: 55px;
+    font-widht: 700;
+    color: whitesmoke;
+}
+/* header end*/
+
+/* main begin*/
+.midle {
+    padding-bottom: 85px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    background-color: #0090bd;
+    border-radius: 15px;
+    margin: 10px;
+    width: 200px;    
+    min-height: 600px;
+}
+
+.menu {
+    padding: 5px;    
+}
+
+.menu_header {
+    font-weight: bold;
+}
+
+.menu_item, .menu_header {
+    text-decoration: none;
+    font-size: 17px;
+    text-align: center;
+    color: black;
+}
+.menu_item:hover {
+    color: orange;
+}
+
+.menu_table{
+    padding-left: 25px;
+}
+
+.main {
+    width: 50%;
+}
+
+/* inside content begin*/
+h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.card {
+    width:100%;
+    background-color: #D9DDDC;
+    margin: 20px;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.card_item {
+    text-align: center;
+    text-decoration: none;
+}
+
+.card_link {
+    color: black;
+    text-decoration: none;    
+}
+.card_link:hover {
+    color:orange;
+}
+
+/* cool form start*/
+.coolForm {
+  margin-top: 20px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.font-family {
+  font-family: sans-serif;
+}
+
+.coolFormTest {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.coolWindow {
+  background-color: #4d99a5;
+  border-radius: 20px;
+  min-height: 300px;
+  padding: 20px;
+  width: 750px;
+}
+
+
+.coolTitle {
+  color: #eee;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.coolSubtitle {
+  color: #eee;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.coolInput {
+  background-color: white;
+  border-radius: 12px;
+  border: 0;
+  color: black;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+.coolInput:focus ~ .cut,
+.coolInput:not(:placeholder-shown) ~.cut {
+    transform: translateY(8px);
+}
+.placeholder {
+  color: black;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+.coolInput:focus ~ .placeholder,
+.coolInput:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.coolInput:not(:placeholder-shown) ~ .placeholder {
+  color: black;
+}
+
+.coolInput:focus ~ .placeholder {
+  color: #dc2f55;
+}
+
+.cut {
+  background-color: #4d99a5;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 120px;
+}
+
+.cut-short {
+  width: 100px;
+
+}
+.coolSubmit {
+  background-color: #0090bd;
+  border-radius: 12px;
+  border: 0;
+  color: black;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  text-align: center;
+  width: 100%;
+}
+.coolSubmit:active {
+  background-color: #06b;
+}
+
+.coolImg {
+    width: 400px;
+    border-radius: 15px;
+}
+/* cool form end*/
+
+/* inside content end*/
+
+
+.banner {
+    width: 150px;
+    padding:25px;
+}
+/* main end*/
+
+/* footer begin*/
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;    
+    width: 100%;
+    margin: -75px auto 0;
+    display: flex;
+    height: 75px;
+    display: flex;   
+    justify-content: flex-end;
+    background: #4d99a5;    
+}
+
+.footer_info {
+    font-size: 15px;
+    color:white;
+    margin-top: 50px;
+    margin-right: 25px;
+}
+/* footer end*/
+
+/* helper */
+.border {
+    border: 1px solid black;
+}   
+
+
+
+/* css for crabs-game in JS begin*/
+.game {
+            width: 190px;
+            height: 350px;
+            text-align: center;
+            padding: 3px;       
+            margin: 5px;
+            color: orange;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+.cube {
+            font-size: 7px;
+            line-height: 0;
+        }
+.dot {
+            font-weight: bold;
+            font-size: 8px;
+        }
+/* css for crabs-game in JS end*/                
